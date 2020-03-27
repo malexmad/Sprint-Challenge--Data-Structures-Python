@@ -1,4 +1,5 @@
 import time
+from binary_search_tree import BinarySearchTree
 
 start_time = time.time()
 
@@ -21,9 +22,21 @@ duplicates = []  # Return the list of duplicates in this data structure
 #         if name_1 == name_2:
 #             duplicates.append(name_1)
 
-#
-for item in set(names_1) & set(names_2):
-    duplicates.append(item)
+# O(nlogn)
+bst = BinarySearchTree("Marvin Davila") # create the bst
+
+# insert name in the bst
+for name_1 in names_1:
+    bst.insert(name_1)
+
+# use contain method to check if it exist in tree and append
+for name_2 in names_2:
+    if bst.contains(name_2):
+        duplicates.append(name_2)
+
+# stretch
+# for item in set(names_1) & set(names_2):
+#     duplicates.append(item)
 
 end_time = time.time()
 print(f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")
