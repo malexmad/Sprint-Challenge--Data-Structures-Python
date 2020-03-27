@@ -45,6 +45,47 @@ class LinkedList:
         # if we've gotten here, then the target node isn't in our list
         return False
 
+    # [5,4,3,2,1]
     def reverse_list(self, node, prev):
         # You must use recursion for this solution
-        pass
+
+        # if sll is empty return None
+        if node == None:
+            return None
+
+        # (Base Case) if the next node is none it is the end of the sll and change it to head
+        if node.next_node == None:
+            self.head = node
+            return
+
+        # run the reverse method until base case is reached
+        self.reverse_list(node.next_node, node)
+
+        # (1), head
+        # 2->1=> (2),  3->2=> (3),  4->3=> (4),  5->4=> (5), reversing setting next node
+        node.next_node.set_next(node)
+        # 2 ->1 => 3,  3 ->2 => 4,  4->3=>5,  5->4=>None, next node needs to be the prev
+        node.next_node = prev
+
+        # while node != None:
+        #     next = node.next_node  #4
+        #     node.next_node = prev # none
+        #     prev = node  # 5
+        #     node = next  # 4
+        # self.head = prev
+        #
+        # if node == None:
+        #     return node
+
+# list1 = LinkedList()
+# list1.add_to_head(1)
+# list1.add_to_head(2)
+# list1.add_to_head(3)
+# list1.add_to_head(4)
+# list1.add_to_head(5)
+# # [5,4,3,2,1]
+# list1.reverse_list(list1.head, None)
+# print(list1.head.value)
+# print(list1.head.next_node.value)
+# print(list1.head.next_node.next_node.next_node.next_node.next_node)
+# [1,2,3,4,5]
